@@ -1,0 +1,107 @@
+Question 3A
+-----------------------------------------------------------
+package Assignment;
+import java.util.*;
+public class Cruise {
+	 public static void main(String[] args) {
+		    Membertype ob;        
+		        Scanner sc = new Scanner(System.in);		        
+		        Map<Integer,Membertype> mapValue = new HashMap<Integer,Membertype>();		        
+		        System.out.println("Enter the Number of Travelers You want On the Cruise");		        
+		        int num = sc.nextInt();		        
+		        for(int i=1; i<=num; i++) {
+		            mapValue.put(i, new Membertype());
+		        }
+		        int TotalAmt=0;
+		        for(Map.Entry<Integer, Membertype> entry:mapValue.entrySet()){    
+		            int key=entry.getKey();  		            
+		            Membertype b=entry.getValue();  
+		            System.out.println(key+". Data:");
+		            System.out.println();
+		            System.out.println("Name: " + b.crewname + "\nAge: " + b.crewage +"\nIdno"+b.idno+"\nMember Type: "+"\nTripname: "+b.tripname + b.memtypes+"\nFees: "+b.crewfee);
+		            System.out.println();
+		            System.out.println("Name: " + b.adultname + "\nAge: " + b.adultage +"\nTicket number: "+b.adulttno +"\nMember Type: " + b.memtypes+"\nFees: "+b.adultfee+"\nPhone Number"+b.phoneno+"\nAddress: "+b.address);
+		            System.out.println();
+		            System.out.println("Name: " + b.crewname + "\nAge: " + b.childage + "\nTicket number: "+b.childtno +"\nMember Type: " + b.memtypes+"\nFees: "+b.childfee);
+		            TotalAmt=b.adultfee+b.childfee;
+		        }		        
+		       System.out.println(Membertype.countMembers());
+		       System.out.println("Total amount of tickets sold: "+TotalAmt);
+		    }
+		}
+
+
+
+-----------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+package Assignment;
+import java.util.*;
+public class Membertype {	    
+	    static int idno,adulttno,childtno;
+	    static String tripname,phoneno,address;
+	    int age;
+	    static int crewage,adultage,childage;
+	    static String crewname,adultname,childname;
+	    int memtype;
+	    String memtypes;
+	    static int cntCrew,cntAdult,cntChild;
+	    int fee;
+	    static int crewfee,adultfee,childfee;
+	   Scanner scan = new Scanner(System.in);
+	   public Membertype() {
+	        System.out.println("Enter Age: ");
+	        this.age=scan.nextInt();
+	       if(age>10) {
+	           System.out.println("1. For Crew Member or 2. For Adults");
+	           this.memtype=scan.nextInt();
+	           if(memtype==1) {
+	                this.memtypes="Crew";
+	                cntCrew++;
+	                fee=0;
+	                System.out.println("Enter Crew Name: ");
+	                this.crewname=scan.next();
+	                System.out.println("Enter idno: ");
+	                this.idno = scan.nextInt();
+	                System.out.println("Enter Trip Name: ");
+	                this.tripname = scan.next();
+	                this.crewage = age;
+	                this.crewfee = fee;
+	            }
+	            else if(memtype==2) {
+	                this.memtypes="Adult";
+	                cntAdult++;
+	                fee=500;
+	                System.out.println("Enter Adult Name: ");
+	                this.adultname=scan.next();
+	                System.out.println("Enter ticket no(tno): ");
+	                this.adulttno = scan.nextInt();
+	                System.out.println("Enter phone number of Adult: ");
+	                this.phoneno = scan.next();
+	                System.out.println("Enter address of Adult: ");
+	                this.address = scan.next();
+	                this.adultage = age;
+	                this.adultfee = fee;
+	            }        
+	        }
+	        else {
+	            this.memtypes="Children";
+	            cntChild++;
+	            fee=250;
+	            System.out.println("Enter Child Name: ");
+	            this.childname=scan.next();
+	            System.out.println("Enter ticket number(tno): ");
+	            this.childtno = scan.nextInt();
+	            this.childage = age;
+	            this.childfee = fee;
+	        }
+	    }
+	    public static String countMembers() {
+	       return "Total Crew Members are  "+cntCrew+
+	                "\n Details of CrewMembers: "+"\nName of crew: "+crewname+"\nIdno: "+idno+"\nAge of crew: "+crewage+"\nTrip Name: "+tripname+
+	                "\n\nTotal Number of Adults are "+cntAdult+
+	                "\nName of Adult: "+crewname+"\nTicket Number: "+adulttno+"\nAge of adult: "+adultage+"\nPhone Number: "+phoneno+"\nAddress of adult: "+address+
+	                "\n\nTotal Number of Children are "+cntChild+
+	                "\nTicket Numer of Child: "+childtno+"\nName of child: "+childname+"\nAge of child: "+childage;
+	    }  
+}
+
